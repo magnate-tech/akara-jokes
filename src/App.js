@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+//Importing the various components to be used from React Bootstrap
 import {
   Accordion,
   Card,
@@ -10,12 +11,17 @@ import {
 } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
+//Importing Axios to easily use API
 import axios from "axios";
 
 function App() {
+  //Dynamic storage of Joke Category
   const [category, setCategory] = useState();
+  //Dynamic storage of data gotten from API
   const [dataa, setData] = useState({});
+  //API LINK
   const apiLink = `https://v2.jokeapi.dev/joke/${category}?blacklistFlags=sexist&type=twopart`;
+  //Function to get data from API on execution of an event
   const searchJoke = () => {
     axios.get(apiLink).then((response) => {
       setData(response.data);
@@ -56,6 +62,7 @@ function App() {
                 </Row>
               </Container>
             </div>
+            {/*Data in body would not display until a sucsessful response is gotten from the API */}
             {dataa.setup !== undefined && (
               <div className="body">
                 <div className="setup">
